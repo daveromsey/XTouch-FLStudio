@@ -71,7 +71,7 @@ class McuBaseClass():
 
     def OnInit(self):
         """ Called when the script has been started """
-        self.FirstTrackT[0] = 1
+        self.FirstTrackT[0] = 0  # Set the first track to Master (instead of track 1, which was the previous defualt).
         self.FirstTrack = 0
         self.SmoothSpeed = 0 # TODO: is not required if OnInit is not called more than once, need to check if this is the case
 
