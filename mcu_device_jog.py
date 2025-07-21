@@ -126,31 +126,59 @@ class McuDeviceJog:
                 transport.globalTransport(midi.FPT_MixerWindowJog, event.outEv, event.pmeFlags)
 
         elif (self.JogSource == mcu_buttons.Inputs) & (event.outEv == 0):
-            self.TMackieCU.SetFirstTrack(mixer.trackNumber())
-            ui.showWindow(midi.widMixer)
-            ui.setFocused(midi.widMixer)
+            # Note: Disabled track setting behavior becuase I don't use it.
+            # self.TMackieCU.SetFirstTrack(mixer.trackNumber())
+
+            isMixerVisible = ui.getVisible(midi.widMixer)
+            if ( isMixerVisible ):
+                ui.hideWindow(midi.widMixer)
+            else :
+                ui.showWindow(midi.widMixer)
+                ui.setFocused(midi.widMixer)
 
         elif (self.JogSource == mcu_buttons.MidiTracks) | (self.JogSource == mcu_buttons.Inputs):
             self.TrackSel(self.JogSource - mcu_buttons.MidiTracks, event.outEv)
             if self.JogSource == mcu_buttons.MidiTracks:
-                ui.showWindow(midi.widPlaylist)
-                ui.setFocused(midi.widPlaylist)
+                isPlaylistVisible = ui.getVisible(midi.widPlaylist)
+                if ( isPlaylistVisible ):
+                    ui.hideWindow(midi.widPlaylist)
+                else :
+                    ui.showWindow(midi.widPlaylist)
+                    ui.setFocused(midi.widPlaylist)
+
             elif self.JogSource == mcu_buttons.Inputs:
                 ui.showWindow(midi.widMixer)
                 ui.setFocused(midi.widMixer)
         elif self.JogSource == mcu_buttons.AudioInst:
-            ui.showWindow(midi.widChannelRack)
-            ui.setFocused(midi.widChannelRack)
-            self.TrackSel(2, event.outEv)
+            isChanelRackVisible = ui.getVisible(midi.widChannelRack)
+            if ( isChanelRackVisible ):
+                ui.hideWindow(midi.widChannelRack)
+            else :
+                ui.showWindow(midi.widChannelRack)
+                ui.setFocused(midi.widChannelRack)
+
+            # Note: Disabled track setting behavior becuase I don't use it.
+            # self.TrackSel(2, event.outEv)
 
         elif (self.JogSource == mcu_buttons.Outputs):
-            ui.showWindow(midi.widMixer)
-            ui.setFocused(midi.widMixer)
-            self.TMackieCU.SetFirstTrack(0 + event.outEv)
+            isMixerVisible = ui.getVisible(midi.widMixer)
+            if ( isMixerVisible ):
+                ui.hideWindow(midi.widMixer)
+            else :
+                ui.showWindow(midi.widMixer)
+                ui.setFocused(midi.widMixer)
+
+            # Note: Disabled track setting behavior becuase I don't use it.
+            # self.TMackieCU.SetFirstTrack(0 + event.outEv)
 
         elif (self.JogSource == mcu_buttons.Buses or self.JogSource == mcu_buttons.Aux):
-            ui.showWindow(midi.widMixer)
-            ui.setFocused(midi.widMixer)
+            isMixerVisible = ui.getVisible(midi.widMixer)
+            if ( isMixerVisible ):
+                ui.hideWindow(midi.widMixer)
+            else :
+                ui.showWindow(midi.widMixer)
+                ui.setFocused(midi.widMixer)
+
             step = event.outEv
             if step != 0:
                 CurTrackNumber = self.TMackieCU.Tracks[0].TrackNum
@@ -166,16 +194,25 @@ class McuDeviceJog:
                         break
 
         elif (self.JogSource == mcu_buttons.User) & (event.outEv == 0):
-            ui.showWindow(midi.widBrowser)
-            ui.setFocused(midi.widBrowser)
+            isBrowserVisible = ui.getVisible(midi.widBrowser)
+            if ( isBrowserVisible ):
+                ui.hideWindow(midi.widBrowser)
+            else :
+                ui.showWindow(midi.widBrowser)
+                ui.setFocused(midi.widBrowser)
 
         elif self.JogSource == mcu_buttons.AudioTracks & (event.outEv == 0):
             ui.showWindow(midi.widPlaylist)
             ui.setFocused(midi.widPlaylist)
-            
+
         elif self.JogSource == mcu_buttons.AudioTracks:
-            ui.showWindow(midi.widPlaylist)
-            ui.setFocused(midi.widPlaylist)
+            isPlaylistVisible = ui.getVisible(midi.widPlaylist)
+            if ( isPlaylistVisible ):
+                ui.hideWindow(midi.widPlaylist)
+            else :
+                ui.showWindow(midi.widPlaylist)
+                ui.setFocused(midi.widPlaylist)
+
             if event.outEv != 0:
                 found = False
                 for x in range(1, playlist.trackCount()-1):

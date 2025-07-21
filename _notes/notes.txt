@@ -1,0 +1,22 @@
+Handle toggling windows:
+
+Buttons         (mapped to)
+---------------------------
+MIDI Tracks     (Playlist)
+Inputs          (Mixer)
+Audio Tracks    (Playlist)
+Audio INST      (Channel Rack)
+AUX             (Mixer)
+Busses          (Mixer)
+Outputs         (Mixer)
+User            (Browser)
+
+
+Name          FL Window Name
+----------------------------
+Browser       widBrowser
+Channel Rack  widChannelRack
+Piano Roll    widPianoRoll
+Playlist      widPlaylist
+Mixer         widMixer
+
