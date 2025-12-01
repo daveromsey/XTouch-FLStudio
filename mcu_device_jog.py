@@ -138,13 +138,14 @@ class McuDeviceJog:
 
         elif (self.JogSource == mcu_buttons.MidiTracks) | (self.JogSource == mcu_buttons.Inputs):
             self.TrackSel(self.JogSource - mcu_buttons.MidiTracks, event.outEv)
+            isPlaylistVisible = ui.getVisible(midi.widPlaylist)
+            isPianoRollVisible = ui.getVisible(midi.widPianoRoll)
             if self.JogSource == mcu_buttons.MidiTracks:
-                isPlaylistVisible = ui.getVisible(midi.widPlaylist)
-                if ( isPlaylistVisible ):
-                    ui.hideWindow(midi.widPlaylist)
+                if ( isPianoRollVisible ):
+                    ui.hideWindow(midi.widPianoRoll)
                 else :
-                    ui.showWindow(midi.widPlaylist)
-                    ui.setFocused(midi.widPlaylist)
+                    ui.showWindow(midi.widPianoRoll)
+                    ui.setFocused(midi.widPianoRoll)
 
             elif self.JogSource == mcu_buttons.Inputs:
                 ui.showWindow(midi.widMixer)

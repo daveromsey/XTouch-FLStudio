@@ -2,7 +2,7 @@ Handle toggling windows:
 
 Buttons         (mapped to)
 ---------------------------
-MIDI Tracks     (Playlist)
+MIDI Tracks     (Piano Roll)
 Inputs          (Mixer)
 Audio Tracks    (Playlist)
 Audio INST      (Channel Rack)
